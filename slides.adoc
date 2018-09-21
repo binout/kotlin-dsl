@@ -8,6 +8,7 @@
 :goto: true
 :status: true
 :conf: bdxio
+:src: ./src/main/kotlin/io/github/binout/kotlin
 
 image::images/{conf}.jpg[float="right"]
 
@@ -22,95 +23,113 @@ image::images/lectra-versalis.jpg[versalis, 800]
 
 == Domain Specific Language
 
-TODO
+image::images/book.png[float=right]
+
+[quote]
+Facile à lire, écrire, comprendre
+
+* Langage avec une syntaxe spécifique à un domain métier
+* Permet de masquer la complexité d'une API technique sous-jacente
+
+== Specific DSL
+
+image::images/sql.png[]
+
+image::images/lexyacc.png[float=left]
+
+image::images/regex.png[float=right]
+
+
+
+== Embedded DSL
+
+* Utiliser un langage existant comme support
+* Réussir à abstraire le langage support
+
+image::images/java.png[float=left]
+image::images/groovy.png[float=center]
+image::images/scala.png[float=right]
+
+
 
 == Exemple : Jenkinsfile (Groovy)
 
+.Jenkinsfile
 image::images/jenkinsfile.png[]
 
 == Exemple : Gatling (Scala)
 
+.Scenario Gatling
 image::images/gatling.png[]
 
 == Et en Kotlin ?
 
-image::images/android.png[float="left"]
+.Android
+image::images/android.png[]
 
-image::images/gradle.png[float="right"]
+== Et en Kotlin ?
+
+.Gradle
+image::images/gradle.gif[]
+
+== Démo
+
 
 == Operators overloading
 
 [source, kotlin]
 ----
-collection += element
-collection.add(element)
+include::{src}/Examples.kt[tag=operator]
 ----
+
+
+== Destructuring declaration
 
 [source, kotlin]
 ----
-a + b
-a.plus(b)
-----
-
-== Type aliases
-
-[source, kotlin]
-----
-typealias Point = Pair
+include::{src}/Examples.kt[tag=destructuring]
 ----
 
 == get/set methods convention
 
 [source, kotlin]
 ----
-map["key"] = "value"
-map.put("key", "value")
+include::{src}/Examples.kt[tag=getset]
 ----
-
-== Destructuring declaration
-
-[source, kotlin]
-----
-val (x, y) = Point(0, 0)
-val p = Point(0, 0); val x = p.first; val y = p.second
-----
-
 
 == Lambda out of parentheses
 
 [source, kotlin]
 ----
-list.forEach { ... }
-list.forEach({...})
+include::{src}/Examples.kt[tag=parentheses]
 ----
 
 == Extension functions
 
 [source, kotlin]
 ----
-mylist.first(); // there isn’t first() method in mylist collection
+include::{src}/Examples.kt[tag=extension]
 ----
 
 == Infix functions
 
 [source, kotlin]
 ----
-1 to "one"
-1.to("one")
+include::{src}/Examples.kt[tag=infix]
 ----
 
 == Lambda with receiver
 
 [source, kotlin]
 ----
-Person().apply { name = «John» }
+include::{src}/Examples.kt[tag=receiver]
 ----
-
-== Démo
-
-Jenkinsfile en Kotlin
 
 == Conclusion
 
 [quote]
 Ecrire un DSL en Kotlin c'est facile et en plus ce n'est pas magique !
+
+https://github.com/binout/kotlin-dsl
+
+image::images/lovekotlin.png[float=right]
