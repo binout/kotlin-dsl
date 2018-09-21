@@ -50,5 +50,12 @@ class StepContext {
     }
 }
 
-class TaskContext(var echo: String = "")
+class TaskContext {
+
+    lateinit var echo: String
+
+    fun echo(msg: String) {
+        this.echo = msg
+    }
+}
 
