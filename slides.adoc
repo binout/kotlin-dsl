@@ -128,7 +128,7 @@ include::{src}/Examples.kt[tag=receiver]
 == Conclusion
 
 [quote]
-Ecrire un DSL en Kotlin c'est facile et en plus ce n'est pas magique !
+Ecrire un DSL en Kotlin c'est facile et pas besoin de magie !
 
 https://github.com/binout/kotlin-dsl
 
