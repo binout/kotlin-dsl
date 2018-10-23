@@ -19,3 +19,6 @@ buildNumber.properties
 .jqwik-database
 
 output/
+.settings
+.classpath
+.project

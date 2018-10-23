@@ -1,4 +1,4 @@
-= Dessine moi un DSL en Kotlin
+= Dessine moi un DSL en Kotlin 
 :icons: font
 :asset-uri-scheme: https
 :source-highlighter: highlightjs
@@ -33,12 +33,12 @@ Facile à lire, écrire, comprendre
 
 == Specific DSL
 
-image::images/sql.png[]
+* Langage dédié avec une syntaxe spécifique
+* Nécessite d'implémenter un parseur
 
+image::images/sql.png[float=left]
+image::images/regex.png[float=left]
 image::images/lexyacc.png[float=left]
-
-image::images/regex.png[float=right]
-
 
 
 == Embedded DSL
@@ -47,9 +47,8 @@ image::images/regex.png[float=right]
 * Réussir à abstraire le langage support
 
 image::images/java.png[float=left]
-image::images/groovy.png[float=center]
-image::images/scala.png[float=right]
-
+image::images/groovy.png[float=left]
+image::images/scala.png[float=left]
 
 
 == Exemple : Jenkinsfile (Groovy)
@@ -62,19 +61,30 @@ image::images/jenkinsfile.png[]
 .Scenario Gatling
 image::images/gatling.png[]
 
-== Et en Kotlin ?
+== Et en Kotlin !
 
 .Android
 image::images/android.png[]
 
-== Et en Kotlin ?
+== Et en Kotlin !
 
 .Gradle
 image::images/gradle.gif[]
 
+== Pourquoi Kotlin ?
+
+[quote]
+____
+* Statiquement typé
+* Support de l'IDE (complétion)
+* Langage désigné pour faciliter l'écriture de DSL
+____
+
 == Démo
 
+image::images/xchart.png[]
 
+////
 == Operators overloading
 
 [source, kotlin]
@@ -96,6 +106,7 @@ include::{src}/Examples.kt[tag=destructuring]
 ----
 include::{src}/Examples.kt[tag=getset]
 ----
+////
 
 == Lambda out of parentheses
 
@@ -108,6 +119,8 @@ include::{src}/Examples.kt[tag=parentheses]
 
 [source, kotlin]
 ----
+include::{src}/Examples.kt[tag=point]
+
 include::{src}/Examples.kt[tag=extension]
 ----
 
@@ -115,6 +128,8 @@ include::{src}/Examples.kt[tag=extension]
 
 [source, kotlin]
 ----
+include::{src}/Examples.kt[tag=point]
+
 include::{src}/Examples.kt[tag=infix]
 ----
 
@@ -122,6 +137,8 @@ include::{src}/Examples.kt[tag=infix]
 
 [source, kotlin]
 ----
+include::{src}/Examples.kt[tag=point]
+
 include::{src}/Examples.kt[tag=receiver]
 ----
 
