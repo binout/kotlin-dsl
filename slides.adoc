@@ -61,12 +61,25 @@ image::images/jenkinsfile.png[]
 .Scenario Gatling
 image::images/gatling.png[]
 
-== Et en Kotlin !
+== Kotlin ?
 
-.Android
-image::images/android.png[]
+image::images/kotlin.png[float=right]
 
-== Et en Kotlin !
+* Orienté objet et fonctionnel avec typage statique
+* Créé par JetBrains en 2010 (open sourcé en 2012)
+* _Sponsorisé_ par Google Android 📱 en 2017
+* Compilable pour la JVM ☕️
+
+[source, kotlin]
+----
+package hello
+
+fun main() {
+    println("Hello World")
+}
+----
+
+== DSL en Kotlin
 
 .Gradle
 image::images/gradle.gif[]
@@ -106,7 +119,6 @@ include::{src}/Examples.kt[tag=destructuring]
 ----
 include::{src}/Examples.kt[tag=getset]
 ----
-////
 
 == Lambda out of parentheses
 
@@ -141,6 +153,7 @@ include::{src}/Examples.kt[tag=point]
 
 include::{src}/Examples.kt[tag=receiver]
 ----
+////
 
 == Conclusion
 
