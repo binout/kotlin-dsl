@@ -44,33 +44,28 @@ fun main(args: Array<String>) {
 
 }
 
-fun `create XY chart`(lambda: XYChartBuilder.() -> Unit)  {
-    val chartBuilder = XYChartBuilder()
-    chartBuilder.apply(lambda)
-}
+
+fun `create XY chart`(λ: XYChartBuilder.() -> Unit) = XYChartBuilder().apply(λ)
 
 
-fun XYChartBuilder.draw(lambda: XYChart.() -> Unit): XYChart {
+fun XYChartBuilder.draw(λ: XYChart.() -> Unit): XYChart {
     val chart = this.build()
-    chart.apply(lambda)
+    chart.apply(λ)
     return chart
 }
 
-fun XYChart.style(lambda: XYStyler.() -> Unit) {
-    this.styler.apply(lambda)
-}
+fun XYChart.style(λ: XYStyler.() -> Unit) = styler.apply(λ)
 
-fun XYChart.serie(name: String, lambda: Serie.() -> Unit) {
+
+fun XYChart.serie(name: String, λ: Serie.() -> Unit) {
     val serie = Serie()
-    serie.apply(lambda)
+    serie.apply(λ)
     this.addSeries(name, serie.x, serie.y)
 }
-
 
 class Serie(var x: DoubleArray = doubleArrayOf(),
             var y: DoubleArray = doubleArrayOf())
 
-fun XYChart.display() {
-    SwingWrapper(this).displayChart()
-}
+fun XYChart.display() = SwingWrapper(this).displayChart()
+
 
