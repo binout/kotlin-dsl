@@ -28,7 +28,7 @@ image::images/book.png[float=right]
 [quote]
 Facile à lire, écrire, comprendre
 
-* Langage avec une syntaxe spécifique à un domain métier
+* Langage avec une syntaxe spécifique à un domaine métier
 * Permet de masquer la complexité d'une API technique sous-jacente
 
 == Specific DSL
@@ -58,7 +58,7 @@ image::images/jenkinsfile.png[]
 
 == Exemple : Gatling (Scala)
 
-.Scenario Gatling
+.Scénario Gatling
 image::images/gatling.png[]
 
 == Kotlin ?
