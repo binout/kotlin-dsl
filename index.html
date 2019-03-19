@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta content="text/html; charset=" http-equiv="Content-Type">
+<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+<meta content="Asciidoctor 1.5.5" name="generator">
+<title>Dessine moi un DSL en Kotlin</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+<style>
+.conum { display: inline-block; color: white !important; background-color: #222222; -webkit-border-radius: 100px; border-radius: 100px; text-align: center; width: 1.2em; height: 1.2em; font-size: 0.9em; font-weight: bold; line-height: 1.2; font-family: Arial, sans-serif; font-style: normal; position: relative; top: -0.1em; }
+.conum * { color: white !important; }
+.conum + b { display: none; }
+.conum:after { content: attr(data-value); }
+.conum:not([data-value]):empty { display: none; }
+.colist table td:first-of-type { padding-right: 0.25em; }
+</style>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/default.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad()</script>
+<link href="deck.js/core/deck.core.css" rel="stylesheet">
+<link href="deck.js/extensions/scale/deck.scale.css" media="screen" rel="stylesheet">
+<link href="deck.js/extensions/goto/deck.goto.css" media="screen" rel="stylesheet">
+<link href="deck.js/extensions/navigation/deck.navigation.css" media="screen" rel="stylesheet">
+<link href="deck.js/extensions/status/deck.status.css" media="screen" rel="stylesheet">
+<link href="deck.js/themes/style/swiss.css" media="screen" rel="stylesheet">
+<link href="deck.js/themes/transition/fade.css" media="screen" rel="stylesheet">
+<link href="deck.js/core/print.css" media="print" rel="stylesheet">
+<script src="deck.js/modernizr.custom.js"></script>
+</head>
+<body class="article">
+<div class="deck-container">
+<section class="slide" id="title-slide">
+<h1>Dessine moi un DSL en Kotlin</h1>
+</section>
+<div id="preamble">
+<div class="sectionbody">
+<div class="imageblock" style="float: right">
+<div class="content">
+<img alt="bdxio" src="images/bdxio.png">
+</div>
+</div>
+</div>
+</div>
+<section class="slide" id="_benoit_prioux">
+<h2>Benoit Prioux</h2>
+<div class="paragraph"><p><span class="icon"><i class="icon-twitter"></i></span> @binout<br>
+<span class="icon"><i class="icon-github"></i></span> <a class="bare" href="https://github.com/binout">https://github.com/binout</a></p></div>
+<div class="imageblock">
+<div class="content">
+<img alt="lectra" src="images/lectra.png">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img alt="versalis" src="images/lectra-versalis.jpg" width="800">
+</div>
+</div>
+</section>
+<section class="slide" id="_domain_specific_language">
+<h2>Domain Specific Language</h2>
+<div class="imageblock" style="float: right">
+<div class="content">
+<img alt="book" src="images/book.png">
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+Facile à lire, écrire, comprendre
+</blockquote>
+</div>
+<div class="ulist">
+<ul>
+<li>Langage avec une syntaxe spécifique à un domaine métier</li>
+<li>Permet de masquer la complexité d&#8217;une API technique sous-jacente</li>
+</ul>
+</div>
+</section>
+<section class="slide" id="_specific_dsl">
+<h2>Specific DSL</h2>
+<div class="ulist">
+<ul>
+<li>Langage dédié avec une syntaxe spécifique</li>
+<li>Nécessite d&#8217;implémenter un parseur</li>
+</ul>
+</div>
+<div class="imageblock" style="float: left">
+<div class="content">
+<img alt="sql" src="images/sql.png">
+</div>
+</div>
+<div class="imageblock" style="float: left">
+<div class="content">
+<img alt="regex" src="images/regex.png">
+</div>
+</div>
+<div class="imageblock" style="float: left">
+<div class="content">
+<img alt="lexyacc" src="images/lexyacc.png">
+</div>
+</div>
+</section>
+<section class="slide" id="_embedded_dsl">
+<h2>Embedded DSL</h2>
+<div class="ulist">
+<ul>
+<li>Utiliser un langage existant comme support</li>
+<li>Réussir à abstraire le langage support</li>
+</ul>
+</div>
+<div class="imageblock" style="float: left">
+<div class="content">
+<img alt="java" src="images/java.png">
+</div>
+</div>
+<div class="imageblock" style="float: left">
+<div class="content">
+<img alt="groovy" src="images/groovy.png">
+</div>
+</div>
+<div class="imageblock" style="float: left">
+<div class="content">
+<img alt="scala" src="images/scala.png">
+</div>
+</div>
+</section>
+<section class="slide" id="_exemple_jenkinsfile_groovy">
+<h2>Exemple : Jenkinsfile (Groovy)</h2>
+<div class="imageblock">
+<div class="content">
+<img alt="jenkinsfile" src="images/jenkinsfile.png">
+</div>
+<div class="title">Figure 1. Jenkinsfile</div>
+</div>
+</section>
+<section class="slide" id="_exemple_gatling_scala">
+<h2>Exemple : Gatling (Scala)</h2>
+<div class="imageblock">
+<div class="content">
+<img alt="gatling" src="images/gatling.png">
+</div>
+<div class="title">Figure 2. Scénario Gatling</div>
+</div>
+</section>
+<section class="slide" id="_kotlin">
+<h2>Kotlin ?</h2>
+<div class="imageblock" style="float: right">
+<div class="content">
+<img alt="kotlin" src="images/kotlin.png">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>Orienté objet et fonctionnel avec typage statique</li>
+<li>Créé par JetBrains en 2010 (open sourcé en 2012)</li>
+<li><em>Sponsorisé</em> par Google Android 📱 en 2017</li>
+<li>Compilable pour la JVM ☕️</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="kotlin language-kotlin">package hello
+
+fun main() {
+    println("Hello World")
+}</code></pre>
+</div>
+</div>
+</section>
+<section class="slide" id="_dsl_en_kotlin">
+<h2>DSL en Kotlin</h2>
+<div class="imageblock">
+<div class="content">
+<img alt="gradle" src="images/gradle.gif">
+</div>
+<div class="title">Figure 3. Gradle</div>
+</div>
+</section>
+<section class="slide" id="_pourquoi_kotlin">
+<h2>Pourquoi Kotlin ?</h2>
+<div class="quoteblock">
+<blockquote>
+<div class="ulist">
+<ul>
+<li>Statiquement typé</li>
+<li>Support de l&#8217;IDE (complétion)</li>
+<li>Langage désigné pour faciliter l&#8217;écriture de DSL</li>
+</ul>
+</div>
+</blockquote>
+</div>
+</section>
+<section class="slide" id="_démo">
+<h2>Démo</h2>
+<div class="imageblock">
+<div class="content">
+<img alt="xchart" src="images/xchart.png">
+</div>
+</div>
+</section>
+<section class="slide" id="_conclusion">
+<h2>Conclusion</h2>
+<div class="quoteblock">
+<blockquote>
+Ecrire un DSL en Kotlin c&#8217;est facile et pas besoin de magie !
+</blockquote>
+</div>
+<div class="paragraph"><p><a class="bare" href="https://github.com/binout/kotlin-dsl">https://github.com/binout/kotlin-dsl</a></p></div>
+<div class="imageblock" style="float: right">
+<div class="content">
+<img alt="lovekotlin" src="images/lovekotlin.png">
+</div>
+</div>
+</section>
+<div aria-role="navigation">
+<a class="deck-prev-link" href="#" title="Previous">&#8592;</a>
+<a class="deck-next-link" href="#" title="Next">&#8594;</a>
+</div>
+<p aria-role="status" class="deck-status">
+<span class="deck-status-current"></span>
+/
+<span class="deck-status-total"></span>
+</p>
+<form action="." class="goto-form" method="get">
+<label for="goto-slide">Go to Slide:</label>
+<input id="goto-slide" list="goto-datalist" name="slidenum" type="text">
+<datalist id="goto-data-list"></datalist>
+<input type="submit" value="Go">
+</form>
+</div>
+<script src="deck.js/jquery.min.js"></script>
+<script src="deck.js/core/deck.core.js"></script>
+<script src="deck.js/extensions/scale/deck.scale.js"></script>
+<script src="deck.js/extensions/goto/deck.goto.js"></script>
+<script src="deck.js/extensions/navigation/deck.navigation.js"></script>
+<script src="deck.js/extensions/status/deck.status.js"></script>
+<script>
+  (function($, deck, undefined) {
+    $.deck.defaults.keys['previous'] = [8, 33, 37, 39];
+    $.deck.defaults.keys['next'] = [13, 32, 34, 39];
+  
+    $.extend(true, $[deck].defaults, {
+        countNested: false
+    });
+  
+    $.deck('.slide');
+  })(jQuery, 'deck');
+</script>
+<style>
+  .slide.canvas-image {
+  -moz-background-size: cover;
+  -webkit-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  display: -moz-box;
+  display: -webkit-box;
+  display: -ms-box;
+  display: box;
+  -moz-box-orient: vertical;
+  -webkit-box-orient: vertical;
+  -ms-box-orient: vertical;
+  box-orient: vertical;
+  -moz-box-align: start;
+  -webkit-box-align: start;
+  -ms-box-align: start;
+  box-align: start;
+  -moz-box-pack: start;
+  -webkit-box-pack: start;
+  -ms-box-pack: start;
+  box-pack: start;}
+  
+  .bottom-left {
+    left: 1%;
+    bottom: 20%; }
+  
+  .top-left {
+    left: 1%;
+    top: 20%; }
+  
+  .bottom-right {
+    right: 1%;
+    bottom: 20%; }
+  
+  .top-right {
+    right: 1%;
+    top: 20%; }
+  
+  .center-up {
+    right: 50%;
+    top: 1%;
+  }
+  
+  .center-down {
+    right: 50%;
+    bottom: 1%;
+  }
+  .canvas-image .canvas-caption p {
+    text-align: center;
+    padding-top: 0;
+    padding: 0;
+    -moz-transform: none;
+    -webkit-transform: none;
+    -o-transform: none;
+    -ms-transform: none;
+    transform: none;
+    display: inline;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.7);
+    font-weight: bold;
+    font-size: 58px;
+    -webkit-box-shadow: 2px 2px 2px #000;
+    -moz-box-shadow: 2px 2px 2px #000;
+    box-shadow: 2px 2px 2px #000;
+    padding: 1rem;
+    color: white; }
+  kbd.keyseq { color: #555555; }
+  kbd:not(.keyseq) {
+    display: inline-block;
+    color: #222222;
+    font-size: 0.7em;
+    line-height: 1.4;
+    background-color: #F7F7F7;
+    border: 1px solid #ccc;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 0 2px white inset;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 0 2px white inset;
+    margin: -0.15em 0.15em 0 0.15em;
+    padding: 0.2em 0.6em;
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+  kbd kbd:first-child { margin-left: 0; }
+  kbd kbd:last-child { margin-right: 0; }
+</style>
+</body>
+</html>
