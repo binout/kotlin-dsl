@@ -7,10 +7,10 @@
 :navigation: false
 :goto: true
 :status: true
-:conf: bdxio
+:conf: breizhcamp
 :src: ./src/main/kotlin/io/github/binout/kotlin
 
-image::images/{conf}.jpg[float="right"]
+image::images/{conf}.png[float="right"]
 
 == Benoit Prioux
 

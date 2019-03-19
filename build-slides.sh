@@ -1,10 +1,10 @@
 #!/bin/bash
 mkdir -p output
 
-echo "Generate slides for bdxio"
-docker run --rm -v $(pwd):/documents/ --name asciidoc-to-deckjs binout/docker-asciidoctor-deckjs asciidoctor -a conf=bdxio -T /asciidoctor-backends/haml/deckjs -D /documents/output slides.adoc
+echo "Generate slides for breizhcamp"
+docker run --rm -v $(pwd):/documents/ --name asciidoc-to-deckjs binout/docker-asciidoctor-deckjs asciidoctor -a conf=breizhcamp -T /asciidoctor-backends/haml/deckjs -D /documents/output slides.adoc
 
-echo "Copy resources for bdxio"
+echo "Copy resources for breizhcamp"
 sed 's/"\/\/cdnjs/"https:\/\/cdnjs/'  output/slides.html > output/index.html ; cp -R images output
 
 if [ ! -d "deck.js" ]; then
